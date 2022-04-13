@@ -39,9 +39,28 @@ Após o container do banco de dados ser iniciado, você deve rodar na pasta da a
   docker exec -i mysql-container-joao-pedro-mns-gcb mysql -uroot -pmysql < database/database.sql
 ```
 
-A aplicação conta com teste unitários, de integração e E2E. Para rodá-los, na pasta da API execute o seguinte comando:
+# Testes
+
+- A aplicação conta com testes unitários, de integração e E2E
+
+Para rodar os testes unitários, na pasta da API execute o seguinte comando:
 ```sh
-  yarn test --watchAll
+  yarn test units/
+```
+
+Para rodar os testes de integração, na pasta da API execute o seguinte comando:
+```sh
+  yarn test integrations/
+```
+
+Para rodar os testes E2E, na pasta da API execute o seguinte comando:
+```sh
+  yarn test e2e/
+```
+
+Para rodar todos os testes, na pasta da API execute o seguinte comando:
+```sh
+  yarn test
 ```
 
 # Observações

@@ -39,7 +39,7 @@ const UpdateDoctor = ({ specialties }: UpdateDoctorTypes) => {
     
     const { name, crm, landline, cellPhone, cep, ["checkbox"]: specialties } = data;
 
-    if(specialties.length < 2) {
+    if(!specialties || specialties.length < 2) {
       return handleShowModal("Marque pelo menos duas especialidades");
     }
 
@@ -55,7 +55,8 @@ const UpdateDoctor = ({ specialties }: UpdateDoctorTypes) => {
         specialties
       })
       .then(() => {
-        handleShowModal("Cadastro atualizado com sucesso")
+        handleShowModal("Cadastro atualizado com sucesso");
+        push("/doctors");
       })
       .catch(({ request: { response } }) =>
         response
@@ -64,8 +65,6 @@ const UpdateDoctor = ({ specialties }: UpdateDoctorTypes) => {
       );
 
       setButtonChildren("Atualizar Médico");
-
-      push("/doctors");
   };
 
   return (
@@ -164,4 +163,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 }
 
-export default UpdateDoctor;  
+export default UpdateDoctor;

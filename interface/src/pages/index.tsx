@@ -35,9 +35,10 @@ const RegisterDoctor = ({ specialties }: RegisterDoctorTypes) => {
   const handleRegisterDoctor: SubmitHandler<any> = async data => {
     
     const { name, crm, landline, cellPhone, cep, ["checkbox"]: specialties } = data;
-
-    if(specialties.length < 2)
-      handleShowModal("Preencha pelo menos duas especialidades");
+    
+    if(!specialties || specialties.length < 2) {
+      return handleShowModal("Marque pelo menos duas especialidades");
+    }
 
     setButtonChildren(<LoadingGif />);
 
@@ -50,10 +51,9 @@ const RegisterDoctor = ({ specialties }: RegisterDoctorTypes) => {
         cep,
         specialties
       })
-      .then((response) => {
+      .then(() => {
         reset();
-        console.log(response);
-        handleShowModal("Cadastro criado com sucesso")
+        handleShowModal("Cadastro criado com sucesso");
       })
       .catch(({ request: { response } }) =>
         handleShowModal(JSON.parse(response).message)
