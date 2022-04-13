@@ -1,0 +1,8 @@
+# dependencies
+*/node_modules
+
+# nest
+*/dist
+
+# next
+*/.next/

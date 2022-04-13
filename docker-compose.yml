@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  database:
+    build: ./database
+    image: mysql-image-joao-pedro-mns-gcb
+    container_name: mysql-container-joao-pedro-mns-gcb
+    volumes: 
+      - "/my/own/datadir:/var/lib/mysql"
+    ports:
+      - "3307:3306"
+  api: 
+    build: ./api
+    image: api-image-joao-pedro-mns-gcb
+    container_name: api-container-joao-pedro-mns-gcb
+    volumes:
+      - "./api:/home/node"
+      - "/home/node/node_modules"
+    environment:
+      - DB_TYPE=mysql
+      - DB_HOST=mysql-container-joao-pedro-mns-gcb
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=mysql
+      - DB_NAME=gcb
+    ports:
+      - "3333:3333"
+    depends_on:
+      - database
+  interface: 
+    build: ./interface
+    image: interface-image-joao-pedro-mns-gcb
+    container_name: interface-container-joao-pedro-mns-gcb
+    volumes:
+      - "./interface/.next:/home/next/.next"
+      - ./interface:/home/next
+      - "/home/next/node_modules"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3333
+      - NEXT_PUBLIC_API_URL_SERVER=http://api-container-joao-pedro-mns-gcb:3333
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
