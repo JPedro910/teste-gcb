@@ -43,22 +43,22 @@ Após o container do banco de dados ser iniciado, você deve rodar na pasta da a
 
 - A aplicação conta com testes unitários, de integração e E2E
 
-Para rodar os testes unitários, na pasta da API execute o seguinte comando:
+Para rodar os testes unitários, no container da API execute o seguinte comando:
 ```sh
   yarn test units/
 ```
 
-Para rodar os testes de integração, na pasta da API execute o seguinte comando:
+Para rodar os testes de integração, no container da API execute o seguinte comando:
 ```sh
   yarn test integrations/
 ```
 
-Para rodar os testes E2E, na pasta da API execute o seguinte comando:
+Para rodar os testes E2E, no container da API execute o seguinte comando:
 ```sh
   yarn test e2e/
 ```
 
-Para rodar todos os testes, na pasta da API execute o seguinte comando:
+Para rodar todos os testes, no container da API execute o seguinte comando:
 ```sh
   yarn test
 ```
